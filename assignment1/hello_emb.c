@@ -20,6 +20,17 @@ struct Pin {
    int len;
 };  
 
+//export gpio pins function
+void export_gpio(int pin)
+{
+   char buffer[256];
+   sprintf(buffer, "%d", pin);
+   fp = fopen("/sys/class/gpio/export", "w");
+   fwrite(buffer, sizeof(char), strlen(buffer), fp);
+   fclose(fp);
+}
+
+
 
 // set the dircetion of the pins 
 void gpio_set_dir(int dir, struct Pin pin){
@@ -71,16 +82,19 @@ int main(void) {
     strcpy(gpio20.loc, "/sys/class/gpio/gpio20");
     gpio20.len = 22;
 
-
-    puts("Hello World!!!"); /* prints Hello World!!! */
+    //export the pins
+    export_gpio(24);
+    export_gpio(25);
+    export_gpio(20);
     gpio_set_dir(1, gpio24);
     gpio_set_dir(1, gpio25);
     gpio_set_dir(0, gpio20);
     gpio_set_val(0, gpio24);
     gpio_set_val(0, gpio25);
     while(1){
-        int button1 = gpio_get_val(gpio20);
-        if(button1 == 1){
+        //debounce button press with usleep
+        int button = gpio_get_val(gpio20); 
+        if(button == 1){
             gpio_set_val(1, gpio24);
             gpio_set_val(0, gpio25);
             usleep(1000000);
