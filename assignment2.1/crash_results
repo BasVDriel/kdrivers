@@ -1,0 +1,33 @@
+Devide by zero:
+    no result
+
+Defererence null pointer:
+    no result
+
+Return non zero value:
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653820] do_init_module: 'bad'->init suspiciously returned 1, it should follow 0/-E convention
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653820] do_init_module: loading module anyway...
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653836] CPU: 3 PID: 7376 Comm: insmod Tainted: G         C O      5.15.76-v7+ #1597
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653848] Hardware name: BCM2835
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653855] Backtrace: 
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653865] [<80a469b0>] (dump_backtrace) from [<80a46bf8>] (show_stack+0x20/0x24)
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653898]  r7:00000002 r6:80d1a720 r5:00000000 r4:60000013
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653904] [<80a46bd8>] (show_stack) from [<80a4b1c4>] (dump_stack_lvl+0x70/0x94)
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653925] [<80a4b154>] (dump_stack_lvl) from [<80a4b200>] (dump_stack+0x18/0x1c)
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653949]  r7:00000002 r6:8e92ecc0 r5:00000001 r4:7f575000
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653954] [<80a4b1e8>] (dump_stack) from [<801cc194>] (do_init_module+0x228/0x23c)
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653975] [<801cbf6c>] (do_init_module) from [<801ce820>] (load_module+0x24f8/0x294c)
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.653995]  r6:96450500 r5:00000002 r4:b6a0df30
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.654001] [<801cc328>] (load_module) from [<801ceef0>] (sys_finit_module+0xc8/0xfc)
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.654023]  r10:0000017b r9:b6a0c000 r8:80100244 r7:00000003 r6:01c2a190 r5:00000000
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.654030]  r4:81005008
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.654035] [<801cee28>] (sys_finit_module) from [<80100040>] (ret_fast_syscall+0x0/0x1c)
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.654053] Exception stack(0xb6a0dfa8 to 0xb6a0dff0)
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.654064] dfa0:                   00000000 7efa28c8 00000003 01c2a190 00000000 00000002
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.654076] dfc0: 00000000 7efa28c8 1458c700 0000017b 01c2bd38 00000003 00000000 7efa28c8
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.654085] dfe0: 7efa25e0 7efa25d0 00023bc0 76cd2580
+    Nov 30 19:55:20 raspberrypi kernel: [ 3635.654095]  r7:0000017b r6:1458c700 r5:7efa28c8 r4:00000000
+    Nov 30 19:56:11 raspberrypi kernel: [ 3686.223045] Goodbye, embedded minor
+
+Access after free:
+    No result
