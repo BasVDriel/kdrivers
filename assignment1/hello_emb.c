@@ -21,8 +21,7 @@ struct Pin {
 };  
 
 //export gpio pins function
-void export_gpio(int pin)
-{
+void export_gpio(int pin){
    char buffer[256];
    sprintf(buffer, "%d", pin);
    fp = fopen("/sys/class/gpio/export", "w");
