@@ -49,26 +49,24 @@ static int hello_init(void){
         .store = store,
     };
 
-    printk(KERN_ALERT "All good 1\n");
     //initialize a single data struct with an attribute
+    led_data = kmalloc(sizeof(struct data), GFP_KERNEL);
     led_data->attr.name = "led";
     led_data->attr.mode = 0666;
     led_data->value = 0;
+    
 
-    printk(KERN_ALERT "All good 2\n");
     //pointer to array of my data strucs
     struct attribute * attrs[] = {
         &led_data->attr,
         NULL
     };
-    printk(KERN_ALERT "All good 3\n");
     //initialize kobj_type
     struct kobj_type ktype = {
         .sysfs_ops = &ops,
         .default_attrs = attrs,
     };
 
-    printk(KERN_ALERT "All good 4\n");
     int err = -1;
     kobj = kmalloc(sizeof(*kobj), GFP_KERNEL);
     if (kobj) {

@@ -33,9 +33,9 @@ __used __section("__versions") = {
 	{ 0xff9ea26f, "kobject_put" },
 	{ 0xd01545d0, "kobject_add" },
 	{ 0x2962e381, "kobject_init" },
+	{ 0x5f754e5a, "memset" },
 	{ 0x80cfd4ac, "kmem_cache_alloc_trace" },
 	{ 0xc9d68f0, "kmalloc_caches" },
-	{ 0x5f754e5a, "memset" },
 	{ 0x3c3ff9fd, "sprintf" },
 	{ 0x92997ed8, "_printk" },
 	{ 0xbcab6ee6, "sscanf" },
@@ -45,4 +45,4 @@ __used __section("__versions") = {
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "6CBDA12D54BA9357DA6AAD0");
+MODULE_INFO(srcversion, "FC2AEA4329F4B181DACC04C");
