@@ -28,16 +28,12 @@ MODULE_INFO(retpoline, "Y");
 static const struct modversion_info ____versions[]
 __used __section("__versions") = {
 	{ 0x90f75b7e, "module_layout" },
-	{ 0x8f678b07, "__stack_chk_guard" },
-	{ 0x3ea1b6e4, "__stack_chk_fail" },
 	{ 0xff9ea26f, "kobject_put" },
-	{ 0xd01545d0, "kobject_add" },
-	{ 0x2962e381, "kobject_init" },
-	{ 0x5f754e5a, "memset" },
-	{ 0x80cfd4ac, "kmem_cache_alloc_trace" },
-	{ 0xc9d68f0, "kmalloc_caches" },
-	{ 0x3c3ff9fd, "sprintf" },
+	{ 0xb809600c, "sysfs_create_file_ns" },
+	{ 0xe9f1adc, "kobject_create_and_add" },
 	{ 0x92997ed8, "_printk" },
+	{ 0xf4130b47, "kernel_kobj" },
+	{ 0x3c3ff9fd, "sprintf" },
 	{ 0xbcab6ee6, "sscanf" },
 	{ 0xb1ad28e0, "__gnu_mcount_nc" },
 };
@@ -45,4 +41,4 @@ __used __section("__versions") = {
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "FC2AEA4329F4B181DACC04C");
+MODULE_INFO(srcversion, "6A38250F0275F9B5030A7ED");

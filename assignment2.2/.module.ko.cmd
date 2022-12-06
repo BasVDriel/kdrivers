@@ -1,1 +1,0 @@
-cmd_/home/pi/kdrivers/assignment2.2/module.ko := ld -r -EL -z noexecstack --build-id=sha1  -T scripts/module.lds -o /home/pi/kdrivers/assignment2.2/module.ko /home/pi/kdrivers/assignment2.2/module.o /home/pi/kdrivers/assignment2.2/module.mod.o;  true

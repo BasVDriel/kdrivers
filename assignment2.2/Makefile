@@ -1,5 +1,5 @@
 ifneq ($(KERNELRELEASE),)
-	obj-m := module.o
+	obj-m := kmod.o
 
 else
 	KERNELDIR ?= \
