@@ -3,46 +3,48 @@
 #include <linux/sysfs.h>
 #include <linux/string.h>
 
-MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Bas van Driel GNU/Linux");
-MODULE_DESCRIPTION("Creating a folder and a file in sysfs");
+#define LED_NAME led
 
-static struct kobject *embedded_minor_kobj;
-static int value = 0;
+static int led_state;
 
-static ssize_t value_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf){
-    return sprintf(buf, "%d\n", value);
+static ssize_t led_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf){
+    return sprintf(buf, "%d\n", led_state);
 }
 
-static ssize_t value_store(struct kobject *kobj, struct kobj_attribute *attr, const char *buf, size_t count){
-    sscanf(buf, "%du", &value);
+static ssize_t led_store(struct kobject *kobj, struct kobj_attribute *attr, const char *buf, size_t count){
+    sscanf(buf, "%du", &led_state);
     return count;
 }
 
-static struct kobj_attribute led_attr = __ATTR(led, 0644, value_show, value_store);
+static struct kobj_attribute led_attribute = __ATTR(LED_NAME, 0664, led_show, led_store);
 
+static struct kobject embedded_minor_kobj;
+
+static struct kobj_type ktype = {
+    .sysfs_ops = &kobj_sysfs_ops,
+    .release = NULL,
+};
+
+/* init function */
 static int __init embedded_minor_init(void){
-    printk(KERN_INFO "initializing the embedded_minor module\n");
-    int retval = 0;
+    int error = 0;
 
-    embedded_minor_kobj = kobject_create_and_add("embedded_minor", kernel_kobj);
-    if (!embedded_minor_kobj){
-        retval = -ENOMEM;
-    }
-    printk(KERN_INFO "Created the embedded_minor folder in sysfs, value: %d", retval);
+    kobject_init_and_add(&embedded_minor_kobj, &ktype, NULL, "embedded_minor");
 
-    retval = sysfs_create_file(embedded_minor_kobj, &led_attr.attr);
-    if (retval){
-        printk(KERN_INFO "Failt to create the fs. return value: %d", retval);
-        kobject_put(embedded_minor_kobj);
-    }
-    return retval;
+    error = sysfs_create_file(&embedded_minor_kobj, &led_attribute.attr);
+    if (error)
+        kobject_put(&embedded_minor_kobj);
+
+    return error;
 }
 
 static void __exit embedded_minor_exit(void){
-    printk(KERN_INFO "Removing the embedded_minor module");
-    kobject_put(embedded_minor_kobj);
+    kobject_put(&embedded_minor_kobj);
 }
 
 module_init(embedded_minor_init);
 module_exit(embedded_minor_exit);
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Bas van Driel");
+MODULE_DESCRIPTION("A simple kernel module with a kobject and sysfs file");
