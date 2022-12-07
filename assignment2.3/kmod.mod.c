@@ -48,4 +48,4 @@ __used __section("__versions") = {
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "25FDDE50CDA34A1AA31CEE0");
+MODULE_INFO(srcversion, "6A45BF7782E10AFF1A38130");

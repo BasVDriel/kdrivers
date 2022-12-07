@@ -3,6 +3,7 @@
 #include <linux/sysfs.h>
 #include <linux/string.h>
 #include <linux/gpio.h>
+#include <linux/delay.h>
 #include <linux/interrupt.h>
 
 #define LED_NAME leds
@@ -34,7 +35,6 @@ static irq_handler_t handler(unsigned int irq, void *dev_id, struct pt_regs *reg
 }
 
 static ssize_t led_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf){
-    //return sprintf(buf, "%d\n", led_state);
     if (led_state == LED_LEFT){
         return sprintf(buf, "left");
     }

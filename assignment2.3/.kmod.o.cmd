@@ -960,6 +960,8 @@ deps_/home/pi/kdrivers/assignment2.3/kmod.o := \
   include/linux/pinctrl/machine.h \
   include/linux/gpio/consumer.h \
     $(wildcard include/config/GPIO_SYSFS) \
+  include/linux/delay.h \
+  arch/arm/include/asm/delay.h \
   include/linux/interrupt.h \
     $(wildcard include/config/IRQ_FORCED_THREADING) \
     $(wildcard include/config/GENERIC_IRQ_PROBE) \
