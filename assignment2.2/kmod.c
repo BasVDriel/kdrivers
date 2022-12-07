@@ -5,9 +5,10 @@
 
 #define LED_NAME led
 
-static int led_state;
+static int led_state = 0;
 
 static ssize_t led_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf){
+    led_state += 1;
     return sprintf(buf, "%d\n", led_state);
 }
 
@@ -25,7 +26,6 @@ static struct kobj_type ktype = {
     .release = NULL,
 };
 
-/* init function */
 static int __init embedded_minor_init(void){
     int error = 0;
 
