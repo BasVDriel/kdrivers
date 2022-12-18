@@ -23,10 +23,10 @@ static int blink(void *data){
     while(!kthread_should_stop()){
         gpio_set_value(RIGHT_PIN, 1);
         gpio_set_value(LEFT_PIN, 0);
-        ssleep(1/frequency);
+        msleep(1000/frequency);
         gpio_set_value(RIGHT_PIN, 0);
         gpio_set_value(LEFT_PIN, 1);
-        ssleep(1/frequency);
+        msleep(1000/frequency);
     }
     return 0;
 }
@@ -101,10 +101,11 @@ static int __init embedded_minor_init(void){
 
 static void __exit embedded_minor_exit(void){
     kobject_put(&embedded_minor_kobj);
-    kthread_stop(kthread);
+    free_irq(irq, NULL);
     gpio_free(LEFT_PIN);
     gpio_free(RIGHT_PIN);
     gpio_free(BUTTON_PIN);
+    kthread_stop(kthread);
 }
 
 module_init(embedded_minor_init);
