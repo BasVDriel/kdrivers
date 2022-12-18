@@ -1,0 +1,23 @@
+#blacklists everything
+*
+!*/
+
+#whitelists the following
+!.gitignore
+!assignment1/hello_emb.c
+!assignment1/Makefile
+
+!assignment2.1/bad.c
+!assignment2.1/Makefile
+
+!assignment2.2/kmod.c
+!assignment2.2/Makefile
+
+!assignment2.3/kmod.c
+!assignment2.3/Makefile
+
+!assignment2.4/kmod.c
+!assignment2.4/Makefile
+
+#ignore .txt files
+*.txt
