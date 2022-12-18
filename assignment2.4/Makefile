@@ -6,12 +6,16 @@ else
 	/lib/modules/`uname -r`/build/
 	PWD := `pwd`
 
-default:
+default: modules test
+
+test: test.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+modules:
 	$(MAKE) -C $(KERNELDIR) \
 	M=$(PWD) modules
 
 endif
 
 clean:
-	rm -f *.ko *.o Module* *mod* 
-
+	rm -f *.ko *.o Module* *mod* test

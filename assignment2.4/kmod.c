@@ -69,7 +69,7 @@ static ssize_t led_store(struct kobject *kobj, struct kobj_attribute *attr, cons
     }
    
     sscanf(buf, "%d", &tempFreq);
-    changeFrequency(tempFreq);
+    changeFrequency(frequency-tempFreq);
     printk(KERN_ALERT "%s", buf, frequency);
     return count;
 }
